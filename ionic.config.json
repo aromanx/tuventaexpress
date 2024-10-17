@@ -1,0 +1,7 @@
+{
+  "name": "tuventaexpress",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
