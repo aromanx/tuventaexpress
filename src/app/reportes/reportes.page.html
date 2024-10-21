@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Reportes de Ventas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Fecha de Inicio</ion-label>
+    <ion-datetime [(ngModel)]="startDate" placeholder="Seleccione fecha"></ion-datetime>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Fecha de Fin</ion-label>
+    <ion-datetime [(ngModel)]="endDate" placeholder="Seleccione fecha"></ion-datetime>
+  </ion-item>
+
+  <ion-button expand="full" (click)="generateReport()">Generar Reporte</ion-button>
+
+  <ion-list *ngIf="reportGenerated">
+    <ion-item *ngFor="let sale of filteredSales">
+      <ion-label>
+        <h2>Venta ID: {{ sale.id }}</h2>
+        <p>Cliente ID: {{ sale.clienteId }}</p>
+        <p><b>${{sale.total}}</b></p>
+        <p>Fecha: {{ sale.fecha | date }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-item *ngIf="filteredSales.length > 0">
+    <ion-label>
+      <h2>Total al Costo: {{ totalCosto | currency }}</h2>
+      <h2>Total de Ventas: {{ totalVentas | currency }}</h2>
+      <h2>Ganancias: {{ ganancia | currency }}</h2>
+    </ion-label>
+  </ion-item>
+
+  <ion-item *ngIf="filteredSales.length === 0 && reportGenerated">
+    <ion-label>No se encontraron ventas en este periodo</ion-label>
+  </ion-item>
+</ion-content>
+

@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Productos</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="openProductModal()">Agregar Producto</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar 
+    [(ngModel)]="searchTerm" 
+    (ionInput)="filterProducts()" 
+    placeholder="Buscar producto..." 
+    debounce="500">
+  </ion-searchbar>
+
+  <ion-list>
+    <ion-item *ngFor="let product of filteredProducts; trackBy: trackById">
+      <ion-thumbnail slot="start">
+        <img [src]="product.urlFotografia" alt="Imagen Producto">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{product.nombre}}</h2>
+        <p>{{product.descripcion}}</p>
+        <p>Cantidad: {{product.cantidad}}</p>
+        <p>Precio Venta: {{product.precioVenta | currency}}</p>
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button (click)="editProduct(product)">Editar</ion-button>
+        <ion-button color="danger" (click)="deleteProduct(product.id)">Eliminar</ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+
+  <ion-spinner *ngIf="products.length === 0 && searchTerm === ''"></ion-spinner>
+  <ion-label *ngIf="filteredProducts.length === 0 && searchTerm !== ''">No se encontraron productos</ion-label>
+</ion-content>

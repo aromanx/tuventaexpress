@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Registro</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="registerUser()">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input [(ngModel)]="newUser.name" name="name" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Usuario</ion-label>
+      <ion-input [(ngModel)]="newUser.username" name="username" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Contraseña</ion-label>
+      <ion-input [(ngModel)]="newUser.password" name="password" type="password" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Nombre de Tienda</ion-label>
+      <ion-input [(ngModel)]="newUser.shopName" name="shopName" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">URL Imagen de la Tienda</ion-label>
+      <ion-input [(ngModel)]="newUser.shopImage" name="shopImage" required></ion-input>
+    </ion-item>
+    <ion-button expand="full" type="submit">Registrar</ion-button>
+  </form>
+</ion-content>

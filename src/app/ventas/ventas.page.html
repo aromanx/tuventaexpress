@@ -1,0 +1,51 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Ventas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Seleccionar Cliente</ion-label>
+    <ion-select [(ngModel)]="selectedClientId">
+      <ion-select-option *ngFor="let client of clients" [value]="client.id">{{ client.nombre }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Seleccionar Producto</ion-label>
+    <ion-select [(ngModel)]="selectedProductId" (ionChange)="loadSelectedProduct()">
+      <ion-select-option *ngFor="let product of products" [value]="product.id">{{ product.nombre }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item *ngIf="selectedProduct">
+    <ion-label position="floating">Cantidad</ion-label>
+    <ion-input type="number" [(ngModel)]="quantity" min="1" [max]="selectedProduct.cantidad" required></ion-input>
+  </ion-item>
+
+  <ion-button expand="full" (click)="addToCart()" [disabled]="!selectedProduct || !quantity">Agregar Producto</ion-button>
+
+  <ion-list>
+    <ion-item *ngFor="let item of cart">
+      <ion-thumbnail slot="start">
+        <img [src]="item.urlFotografia" *ngIf="item.urlFotografia">
+      </ion-thumbnail>
+      <ion-label>
+        <h2>{{ item.nombre }}</h2>
+        <p>Cantidad: {{ item.cantidad }}</p>
+        <p>Precio: {{ item.precioVenta }} / Unidad</p>
+      </ion-label>
+      <ion-buttons slot="end">
+        <ion-button (click)="editCartItem(item)">Editar</ion-button>
+        <ion-button color="danger" (click)="removeFromCart(item)">Eliminar</ion-button>
+      </ion-buttons>
+    </ion-item>
+  </ion-list>
+
+  <ion-item>
+    <ion-label>Total: {{ total | currency }}</ion-label>
+  </ion-item>
+
+  <ion-button expand="full" color="success" (click)="processSale()" [disabled]="!cart.length || !selectedClientId">Realizar Venta</ion-button>
+</ion-content>

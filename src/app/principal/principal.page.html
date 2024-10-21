@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Menú</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-img [src]="shopImage"></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{ shopName }}</ion-card-title>
+    </ion-card-header>
+  </ion-card>
+
+  <ion-list>
+    <ion-item routerLink="/productos">Productos</ion-item>
+    <ion-item routerLink="/clientes">Clientes</ion-item>
+    <ion-item routerLink="/ventas">Ventas</ion-item>
+    <ion-item routerLink="/reportes">Reportes</ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,39 @@
+<!-- product-modal.page.html -->
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ product ? 'Editar' : 'Agregar' }} Producto</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="saveProduct()">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input [(ngModel)]="productData.nombre" name="nombre" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Descripción</ion-label>
+      <ion-textarea [(ngModel)]="productData.descripcion" name="descripcion"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Cantidad</ion-label>
+      <ion-input type="number" [(ngModel)]="productData.cantidad" name="cantidad" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Precio de Costo</ion-label>
+      <ion-input type="number" [(ngModel)]="productData.precioCosto" name="precioCosto" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Precio de Venta</ion-label>
+      <ion-input type="number" [(ngModel)]="productData.precioVenta" name="precioVenta" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">URL de Fotografía</ion-label>
+      <ion-input [(ngModel)]="productData.urlFotografia" name="urlFotografía"></ion-input>
+    </ion-item>
+    <ion-button expand="full" type="submit">{{ product ? 'Guardar Cambios' : 'Agregar Producto' }}</ion-button>
+  </form>
+</ion-content>

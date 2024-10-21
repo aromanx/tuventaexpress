@@ -1,0 +1,31 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ client ? 'Editar' : 'Agregar' }} Cliente</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form (ngSubmit)="saveClient()">
+    <ion-item>
+      <ion-label position="floating">Nombre</ion-label>
+      <ion-input [(ngModel)]="clientData.nombre" name="nombre" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Dirección</ion-label>
+      <ion-textarea [(ngModel)]="clientData.direccion" name="direccion"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Teléfono</ion-label>
+      <ion-input type="tel" [(ngModel)]="clientData.telefono" name="telefono" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">URL de Fotografía</ion-label>
+      <ion-input [(ngModel)]="clientData.urlFotografia" name="urlFotografía"></ion-input>
+    </ion-item>
+    <ion-button expand="full" type="submit">{{ client ? 'Guardar Cambios' : 'Agregar Cliente' }}</ion-button>
+  </form>
+</ion-content>
+
